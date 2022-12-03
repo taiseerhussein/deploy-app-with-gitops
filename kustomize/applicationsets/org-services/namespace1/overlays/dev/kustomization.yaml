@@ -12,10 +12,7 @@ patches:
         elements: 
         - cluster: dev-stable
           url: https://kubernetes.default.svc
-          namespace: php-hello
-        - cluster: dev-unstable
-          url: https://kubernetes.default.svc
-          namespace: php-hello-unstable
+          namespace: namespace1
   target:
     kind: ApplicationSet
 - patch: |- 
