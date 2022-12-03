@@ -18,10 +18,10 @@ spec:
       name: '{{cluster}}-ingestionservice'
     spec:
       source:
-        repoURL: https://SFFCU-ITS@dev.azure.com/SFFCU-ITS/IT-SoftwareDevelopment/_git/olb-kustomize
+        repoURL: https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git
         targetRevision: main
-        path: schoolsfirst/services/namespace1/ingestionservice/overlays/{{cluster}}
-      project: olb
+        path: namespace1/services/namespace1/ingestionservice/overlays/{{cluster}}
+      project: default
       destination:
         server: '{{url}}'
         namespace: '{{namespace}}'

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: schoolsfirst-common
+  name: namespace1-common
   namespace: ocp4-gitops-apps
 spec:
   generators:
@@ -15,13 +15,13 @@ spec:
       #   namespace: namespace1-unstable
   template:
     metadata:
-      name: '{{namespace}}-schoolsfirst-common'
+      name: '{{namespace}}-namespace1-common'
     spec:
       source:
-        repoURL: https://SFFCU-ITS@dev.azure.com/SFFCU-ITS/IT-SoftwareDevelopment/_git/olb-kustomize
+        repoURL: https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git
         targetRevision: main
-        path: schoolsfirst/common/overlays/{{cluster}}
-      project: olb
+        path: namespace1/common/overlays/{{cluster}}
+      project: default
       destination:
         server: '{{url}}'
         namespace: '{{namespace}}'

@@ -5,4 +5,4 @@ data:
   dependencyendpoint__restapi__namespace1ingestionservice__baseurl: 'http://ingestionservice.namespace1.svc.cluster.local:8080/'
   dependencyendpoint__restapi__valueaddlocationservice__baseurl: 'http://locationservice.value-add.svc.cluster.local:8080/'
 metadata:
-  name: profileservice
+  name: service2

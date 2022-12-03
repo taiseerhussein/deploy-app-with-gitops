@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: profileservice
+  name: service2
   namespace: ocp4-gitops-apps
 spec:
   generators:

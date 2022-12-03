@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- ../../schoolsfirst/namespace1/overlays/test
-- ../../schoolsfirst/value-add/overlays/test
+- ../../namespace1/namespace1/overlays/test
+- ../../namespace1/value-add/overlays/test
 - ../../backbase/overlays/test
 
 # Create sealed secret appsets

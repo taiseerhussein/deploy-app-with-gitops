@@ -3,10 +3,10 @@ apiVersion: v1
 metadata:
   name: bam
 data:
-  APPDYNAMICS_AGENT_ACCOUNT_NAME: schoolsfirst-non-prod
+  APPDYNAMICS_AGENT_ACCOUNT_NAME: namespace1-non-prod
   APPDYNAMICS_AGENT_NODE_NAME: bam-d
   APPDYNAMICS_AGENT_TIER_NAME: bam
-  APPDYNAMICS_CONTROLLER_HOST_NAME: schoolsfirst-non-prod.saas.appdynamics.com
+  APPDYNAMICS_CONTROLLER_HOST_NAME: namespace1-non-prod.saas.appdynamics.com
   APPDYNAMICS_JAVA_AGENT_REUSE_NODE_NAME: 'true'
   BAM.properties: |-
     tam.configfile=pe.properties

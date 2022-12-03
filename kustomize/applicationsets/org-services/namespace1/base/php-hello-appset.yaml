@@ -18,10 +18,10 @@ spec:
       name: '{{cluster}}-achdbservice'
     spec:
       source:
-        repoURL: https://gitlab.consulting.redhat.com/customer-success/consulting-engagement-reports/client-cers/2022/nacomm/stp/gitops-appdev.git
+        repoURL: https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git
         targetRevision: main
-        path: schoolsfirst/services/namespace1/achdbservice/overlays/{{cluster}}
-      project: olb
+        path: kustomize/org-services/services/namespace1/php-hello/overlays/{{cluster}}
+      project: default
       destination:
         server: '{{url}}'
         namespace: '{{namespace}}'

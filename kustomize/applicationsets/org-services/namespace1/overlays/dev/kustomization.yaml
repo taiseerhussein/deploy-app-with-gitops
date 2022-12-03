@@ -21,9 +21,9 @@ patches:
 - patch: |- 
     - op: replace
       path: /spec/template/spec/source/path
-      value: schoolsfirst/common/overlays/dev
+      value: namespace1/common/overlays/dev
   target:
-      name: schoolsfirst-common
+      name: namespace1-common
 
 
 

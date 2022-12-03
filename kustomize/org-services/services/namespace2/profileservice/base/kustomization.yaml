@@ -9,51 +9,51 @@ patches:
 - patch: |- 
     - op: replace
       path: /metadata/labels/app
-      value: profileservice
+      value: service2
     - op: replace
       path: /metadata/name
-      value: profileservice
+      value: service2
     - op: replace
       path: /spec/selector/matchLabels/app
-      value: profileservice
+      value: service2
     - op: replace
       path: /spec/selector/matchLabels/deploymentconfig
-      value: profileservice
+      value: service2
     - op: replace
       path: /spec/template/metadata/labels/app
-      value: profileservice
+      value: service2
     - op: replace
       path: /spec/template/metadata/labels/deploymentconfig
-      value: profileservice
+      value: service2
     - op: replace
       path: /spec/template/spec/containers/0/envFrom/4/configMapRef/name
-      value: profileservice
+      value: service2
     - op: replace
       path: /spec/template/spec/containers/0/name
-      value: profileservice
+      value: service2
   target:
     kind: Deployment
 - patch: |- 
     - op: replace
       path: /metadata/labels/app
-      value: profileservice
+      value: service2
     - op: replace
       path: /metadata/name
-      value: profileservice
+      value: service2
     - op: replace
       path: /spec/to/name
-      value: profileservice
+      value: service2
   target:
     kind: Route
 - patch: |- 
     - op: replace
       path: /metadata/labels/app
-      value: profileservice
+      value: service2
     - op: replace
       path: /metadata/name
-      value: profileservice
+      value: service2
     - op: replace
       path: /spec/selector/deploymentconfig
-      value: profileservice
+      value: service2
   target:
     kind: Service

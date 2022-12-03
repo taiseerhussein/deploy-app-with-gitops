@@ -6,7 +6,7 @@ resources:
 
 patchesStrategicMerge:
 - common-appset-value-add.yaml
-- profileservice-appset.yaml
+- service2-appset.yaml
 # - version.yaml
 
 # patches:
@@ -26,9 +26,9 @@ patchesStrategicMerge:
 # - patch: |- 
 #     - op: replace
 #       path: /spec/template/spec/source/path
-#       value: schoolsfirst/common/overlays/dev
+#       value: namespace1/common/overlays/dev
 #   target:
-#     name: schoolsfirst-common-value-add
+#     name: namespace1-common-value-add
 
 
 

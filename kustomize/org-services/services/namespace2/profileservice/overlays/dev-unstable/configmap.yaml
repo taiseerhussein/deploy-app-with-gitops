@@ -3,4 +3,4 @@ data:
   ASPNETCORE_ENVIRONMENT: 'Development'
 kind: ConfigMap
 metadata:
-  name: profileservice
+  name: service2
