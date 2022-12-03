@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- common-appset-php-namespace1.yaml
+- common-appset-namespace1.yaml
 - php-hello-appset.yaml
 # - service2-appset.yaml
 

@@ -20,7 +20,7 @@ spec:
       source:
         repoURL: https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git
         targetRevision: main
-        path: php-hello/common/overlays/{{cluster}}
+        path: kustomize/org-services/common/overlays/{{cluster}}
       project: default
       destination:
         server: '{{url}}'
