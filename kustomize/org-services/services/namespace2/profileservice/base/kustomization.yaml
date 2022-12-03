@@ -1,0 +1,59 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- configmap.yaml
+- ../../../../common/manifest-base/
+
+patches:
+- patch: |- 
+    - op: replace
+      path: /metadata/labels/app
+      value: profileservice
+    - op: replace
+      path: /metadata/name
+      value: profileservice
+    - op: replace
+      path: /spec/selector/matchLabels/app
+      value: profileservice
+    - op: replace
+      path: /spec/selector/matchLabels/deploymentconfig
+      value: profileservice
+    - op: replace
+      path: /spec/template/metadata/labels/app
+      value: profileservice
+    - op: replace
+      path: /spec/template/metadata/labels/deploymentconfig
+      value: profileservice
+    - op: replace
+      path: /spec/template/spec/containers/0/envFrom/4/configMapRef/name
+      value: profileservice
+    - op: replace
+      path: /spec/template/spec/containers/0/name
+      value: profileservice
+  target:
+    kind: Deployment
+- patch: |- 
+    - op: replace
+      path: /metadata/labels/app
+      value: profileservice
+    - op: replace
+      path: /metadata/name
+      value: profileservice
+    - op: replace
+      path: /spec/to/name
+      value: profileservice
+  target:
+    kind: Route
+- patch: |- 
+    - op: replace
+      path: /metadata/labels/app
+      value: profileservice
+    - op: replace
+      path: /metadata/name
+      value: profileservice
+    - op: replace
+      path: /spec/selector/deploymentconfig
+      value: profileservice
+  target:
+    kind: Service

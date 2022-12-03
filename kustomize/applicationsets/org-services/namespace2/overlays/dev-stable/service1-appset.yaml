@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: profileservice
+  namespace: ocp4-gitops-apps
+spec:
+  generators:
+  - list:
+      elements:
+      - cluster: dev-stable
+        url: https://kubernetes.default.svc
+        namespace: value-add-stable
+  

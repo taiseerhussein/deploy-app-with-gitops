@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../config-base
+- endpoints-common.yaml
+# - apm-secret-namespace1.yaml
+# - apm-secret-value-add.yaml
+# - apm-secret-namespace1-unstable.yaml
+# - apm-secret-value-add-unstable.yaml
+patchesStrategicMerge:
+- apm-common.yaml

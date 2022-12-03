@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profileservice
+spec:
+  template:
+    spec:
+      containers:
+        - image: quay.octfcu.org/value-add/profileservice:2022.10.18
+          name: profileservice

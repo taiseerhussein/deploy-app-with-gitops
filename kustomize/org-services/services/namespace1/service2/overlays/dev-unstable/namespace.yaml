@@ -1,0 +1,6 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: namespace1-unstable
+  labels:
+    argocd.argoproj.io/managed-by: openshift-gitops

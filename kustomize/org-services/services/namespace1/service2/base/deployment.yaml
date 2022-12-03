@@ -1,0 +1,83 @@
+kind: Deployment
+apiVersion: v1
+metadata:
+  labels:
+    app: bam
+  name: bam
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  replicas: 1
+  test: false
+  selector:
+    app: bam
+    deploymentconfig: bam
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: bam
+        deploymentconfig: bam
+    spec:
+      volumes:
+        - name: bam
+          configMap:
+            name: bam
+            items:
+              - key: BAM.log4j
+                path: BAM.log4j
+              - key: BAM.properties
+                path: BAM.properties
+              - key: rgy.pool.properties
+                path: rgy.pool.properties
+              - key: rgy.properties
+                path: rgy.properties
+            defaultMode: 420
+      containers:
+        - resources: {}
+          terminationMessagePath: /dev/termination-log
+          name: bam
+          env:
+            - name: SPLUNK_TOKEN
+              value: d415d056-f4b0-45c3-aa13-4b011d60377c
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 8443
+              protocol: TCP
+            - containerPort: 8778
+              protocol: TCP
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: bam
+              readOnly: true
+              mountPath: /opt/webserver/conf/bam/BAM.log4j
+              subPath: BAM.log4j
+            - name: bam
+              readOnly: true
+              mountPath: /opt/webserver/conf/bam/BAM.properties
+              subPath: BAM.properties
+            - name: bam
+              readOnly: true
+              mountPath: /opt/webserver/conf/bam/rgy.pool.properties
+              subPath: rgy.pool.properties
+            - name: bam
+              readOnly: true
+              mountPath: /opt/webserver/conf/bam/rgy.properties
+              subPath: rgy.properties
+          terminationMessagePolicy: File
+          envFrom:
+            - secretRef:
+                name: appdynamics
+            - configMapRef:
+                name: bam
+          image: >-
+            docker-registry.default.svc:5000/namespace1/bam@sha256:b2b0cab4f0ed78d393a049604fd366c14ce7d49742a938dbdca4c066a081a79b
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler

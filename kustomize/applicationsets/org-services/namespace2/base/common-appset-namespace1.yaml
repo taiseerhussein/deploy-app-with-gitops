@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: schoolsfirst-common-value-add
+  namespace: ocp4-gitops-apps
+spec:
+  generators:
+  - list:
+      elements:
+      # - cluster: dev
+      #   url: https://kubernetes.default.svc
+      #   namespace: value-add-unstable
+      # - cluster: dev
+      #   url: https://kubernetes.default.svc
+      #   namespace: value-add
+  template:
+    metadata:
+      name: '{{namespace}}-schoolsfirst-common-value-add'
+    spec:
+      source:
+        repoURL: https://SFFCU-ITS@dev.azure.com/SFFCU-ITS/IT-SoftwareDevelopment/_git/olb-kustomize
+        targetRevision: main
+        path: schoolsfirst/common/overlays/{{cluster}}
+      project: olb
+      destination:
+        server: '{{url}}'
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

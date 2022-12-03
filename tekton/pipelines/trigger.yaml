@@ -1,0 +1,67 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: event-listener-y1cy7u
+  namespace: tekton-tutorial
+spec:
+  namespaceSelector: {}
+  resources: {}
+  serviceAccountName: pipeline
+  triggers:
+    - bindings:
+        - kind: ClusterTriggerBinding
+          ref: github-push
+      interceptors:
+        - params:
+            - name: secretRef
+              value: null
+            - name: eventTypes
+              value:
+                - push
+          ref:
+            kind: ClusterInterceptor
+            name: github
+        - params:
+            - name: filter
+              value: 'body.ref in [''refs/heads/main'', ''refs/heads/master'']'
+            - name: overlays
+              value:
+                - expression: >-
+                    body.ref.split('/')[1] == 'heads' ? body.ref.split('/')[2] :
+                    body.ref.split('/')[1]
+                  key: branch_name
+          ref:
+            kind: ClusterInterceptor
+            name: cel
+      template:
+        ref: trigger-template-tag-build-and-deploy-l8hh6v
+status:
+  address:
+    url: 'http://el-event-listener-y1cy7u.tekton-tutorial.svc.cluster.local:8080'
+  conditions:
+    - lastTransitionTime: '2022-09-19T18:11:04Z'
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: 'True'
+      type: Available
+    - lastTransitionTime: '2022-09-19T18:11:04Z'
+      message: Deployment exists
+      status: 'True'
+      type: Deployment
+    - lastTransitionTime: '2022-09-19T18:11:04Z'
+      message: >-
+        ReplicaSet "el-event-listener-y1cy7u-7798554647" has successfully
+        progressed.
+      reason: NewReplicaSetAvailable
+      status: 'True'
+      type: Progressing
+    - lastTransitionTime: '2022-09-19T18:11:04Z'
+      message: EventListener is ready
+      status: 'True'
+      type: Ready
+    - lastTransitionTime: '2022-09-19T18:11:04Z'
+      message: Service exists
+      status: 'True'
+      type: Service
+  configuration:
+    generatedName: el-event-listener-y1cy7u

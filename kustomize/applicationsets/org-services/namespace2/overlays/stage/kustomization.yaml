@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../base
+
+patches:
+- patch: |- 
+    - op: add
+      path: /spec/generators/0/list
+      value:
+        elements: 
+        - cluster: stage
+          url: https://kubernetes.default.svc
+          namespace: value-add
+  target:
+    kind: ApplicationSet

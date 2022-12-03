@@ -1,0 +1,43 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: bam
+data:
+  APPDYNAMICS_AGENT_ACCOUNT_NAME: schoolsfirst-non-prod
+  APPDYNAMICS_AGENT_NODE_NAME: bam-d
+  APPDYNAMICS_AGENT_TIER_NAME: bam
+  APPDYNAMICS_CONTROLLER_HOST_NAME: schoolsfirst-non-prod.saas.appdynamics.com
+  APPDYNAMICS_JAVA_AGENT_REUSE_NODE_NAME: 'true'
+  BAM.properties: |-
+    tam.configfile=pe.properties
+    tam.poolsize=5
+    rgy.configfile=/opt/webserver/conf/bam/rgy.properties
+    rgy.pool.properties=/opt/webserver/conf/bam/rgy.pool.properties
+    rules.accesscode-expiration-hours=12
+    rules.history_flush_count=4
+    rules.dateLockCounterRange=15
+  APPDYNAMICS_CONTROLLER_SSL_ENABLED: 'true'
+  APPDYNAMICS_AGENT_REUSE_NODE_NAME: 'true'
+  APPDYNAMICS_CONTROLLER_PORT: '443'
+  BAM.log4j: >-
+    # Root logger option
+
+    log4j.rootLogger=DEBUG, splunkrest
+
+    #Splunk logger
+
+    log4j.logger.splunk.logger=INFO, splunkrest
+
+    log4j.additivity.splunk.logger=false
+
+    log4j.appender.splunkrest=com.splunk.logging.log4j.appender.SplunkRestAppender
+
+    log4j.appender.splunkrest.host=https://tstbtvsplhf01.octfcu.org
+
+    log4j.appender.splunkrest.port=8088
+  rgy.pool.properties: |-
+    maxTotal=10
+    maxIdle=2
+    minIdle=5
+  rgy.properties: "#IBM Tivoli Access Manager\r\n#Mon Dec 30 11:58:10 PST 2013\r\nmgmt_domain=Default\r\nldap.bind-pwd={obf2}ogWzOTCyWJvNivxURkaNkIWKuNdbFCx7dx4RBC/tKLw\\=\r\nldap.ssl-enable=true\r\nldap.bind-dn=cn\\=devtdsadmin\r\nldap.enhanced-pwd-policy=true\r\nldap.mgmt=true\r\nldap.svrs=tstbdvsds03.octfcu.org\\:1636\\:readwrite\\:5;\r\nldap.mgmt-version=6.1.1\r\nlocal_domain=Default\r\nldap.user-self-care-objectclass=memberPerson\r\n\r\n# prevents authentication api method from throwing exceptions when pwd contains '!' and '=' chars.\r\n# see:  http://www-01.ibm.com/support/docview.wss?uid=swg1IV00388\r\nldap.auth-using-compare=false\r\n\r\n# tells the api to log failure attempts to the LDAP server (eg: failed counter, etc).\r\nldap.login-failures-persistent=true\r\n\r\n# tells TAM to throw ErrPolicyInvalidAcctDisabledRgyException when failed pwd count == max.\r\nldap.late-lockout-notification=false\r\n\r\n# Tells TAM to log last login of the user\r\nldap.enable-last-login=true"
+  APPDYNAMICS_AGENT_APPLICATION_NAME: Dev_DXT

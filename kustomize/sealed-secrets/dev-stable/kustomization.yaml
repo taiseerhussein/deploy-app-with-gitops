@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- apm-secret-namespace1.yaml
+- apm-secret-value-add.yaml
+- activemq-secret-backbase.yaml
+- apm-secret-backbase.yaml
+- database-secret-backbase.yaml
+- signature-secret-backbase.yaml
+- splunk-secret-backbase.yaml
+- appdynamics-test-secret-backbase.yaml

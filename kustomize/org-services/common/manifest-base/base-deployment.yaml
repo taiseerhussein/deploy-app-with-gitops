@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   labels:
+     app: REPLACE_ME
+   name: REPLACE_ME
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: REPLACE_ME
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: REPLACE_ME
+    spec:
+      containers:
+      - image: quay.io/tkhussein/php-hello:latest
+        name: REPLACE_ME
+        resources: {}

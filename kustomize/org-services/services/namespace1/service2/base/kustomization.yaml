@@ -1,0 +1,62 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- configmap.yaml
+- ../../../../common/manifest-base/
+
+patches:
+- patch: |- 
+    - op: replace
+      path: /metadata/labels/app
+      value: bam
+    - op: replace
+      path: /metadata/name
+      value: bam
+    - op: replace
+      path: /spec/selector/matchLabels/app
+      value: bam
+    - op: replace
+      path: /spec/selector/matchLabels/deploymentconfig
+      value: bam
+    - op: replace
+      path: /spec/template/metadata/labels/app
+      value: bam
+    - op: replace
+      path: /spec/template/metadata/labels/deploymentconfig
+      value: bam
+    - op: replace
+      path: /spec/template/spec/containers/0/envFrom/4/configMapRef/name
+      value: bam
+    - op: replace
+      path: /spec/template/spec/containers/0/name
+      value: bam
+  target:
+    kind: Deployment
+- patch: |- 
+    - op: replace
+      path: /metadata/labels/app
+      value: bam
+    - op: replace
+      path: /metadata/name
+      value: bam
+    - op: replace
+      path: /spec/to/name
+      value: bam
+  target:
+    kind: Route
+- patch: |- 
+    - op: replace
+      path: /metadata/labels/app
+      value: bam
+    - op: replace
+      path: /metadata/name
+      value: bam
+    - op: replace
+      path: /spec/selector/deploymentconfig
+      value: bam
+  target:
+    kind: Service
+
+patchesStrategicMerge:
+- volumes.yaml

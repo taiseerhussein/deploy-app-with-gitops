@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  dependencyendpoint__restapi__bsldataaccess__baseurl: 'https://tstbtvebslv.octfcu.org/WSMemberPortal/'
+  dependencyendpoint__restapi__hostconnector__baseurl: 'https://tstbtvshcv.octfcu.org/'
+kind: ConfigMap
+metadata:
+  name: endpoints-common

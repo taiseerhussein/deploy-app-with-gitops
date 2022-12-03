@@ -1,0 +1,129 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  annotations:
+    tekton.dev/displayName: Update Kustomize Git Repository
+  creationTimestamp: '2022-09-14T19:54:15Z'
+  generation: 20
+  managedFields:
+    - apiVersion: tekton.dev/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:tekton.dev/displayName': {}
+        'f:spec':
+          .: {}
+          'f:params': {}
+          'f:steps': {}
+          'f:volumes': {}
+      manager: Mozilla
+      operation: Update
+      time: '2022-09-14T19:54:15Z'
+  name: update-kustomize-repo
+  namespace: tekton-tutorial
+  resourceVersion: '4766670'
+  uid: 1885c13f-ddbb-4bee-8044-2d9d6e13bc9c
+spec:
+  params:
+    - description: URL of the Git repository to update
+      name: gitRepositoryUrl
+      type: string
+    - default: master
+      description: Branch or Tag to push the update to
+      name: gitRepositoryRevision
+      type: string
+    - default: .
+      description: Path in the repository to work in.
+      name: gitPath
+      type: string
+    - default: ./deployment-patch.yaml
+      description: Name of the file to be updated
+      name: fileName
+      type: string
+    - description: The image to be written into the YAML
+      name: image
+      type: string
+    - description: The image tag to be written into the YAML
+      name: imageTag
+      type: string
+    - default: 'true'
+      description: Log the commands used during execution
+      name: verbose
+      type: string
+  steps:
+    - image: 'alpine/git:v2.26.2'
+      name: git-checkout
+      resources: {}
+      script: |
+        #!/usr/bin/env sh
+        echo 1
+
+        set -eu -o pipefail
+
+        if [[ "\$(params.verbose)" == "true" ]] ; then
+          set -x
+          echo "**** Cloning \$(params.gitRepositoryUrl) into \$(pwd)/repository"
+        fi
+
+        echo $(params.gitRepositoryUrl)
+
+        git clone $(params.gitRepositoryUrl) $(pwd)/repository
+
+        echo 3
+
+        cd repository
+        git checkout $(params.gitRepositoryRevision)
+      volumeMounts:
+        - mountPath: /workspace/repository
+          name: repository
+      workingDir: /workspace
+    - image: 'alpine/git:v2.26.2'
+      name: update-yaml
+      resources: {}
+      script: >
+        #!/usr/bin/env sh
+
+        set -e
+
+
+        if [[ "\$(params.verbose)" == "true" ]] ; then
+          echo "**** Updating \$(params.fileName) image to \$(params.image):\$(params.imageTag)"
+        fi
+
+        pwd
+
+        sed -i
+        's+$(params.image)\:[[:graph:]]*+$(params.image):$(params.imageTag)+g'
+        $(params.gitPath)/\$(params.fileName)
+      volumeMounts:
+        - mountPath: /workspace/repository
+          name: repository
+      workingDir: /workspace/repository
+    - image: 'alpine/git:v2.26.2'
+      name: commit-push-changes
+      resources: {}
+      script: >
+        #!/usr/bin/env sh
+
+        set -e
+
+
+        git config --global user.email "tekton@tekton.dev"
+
+        git config --global user.name "OpenShift Pipeline"
+
+        git add .
+
+        git commit --allow-empty -m "[OpenShift Pipeline] Updating
+        $(params.fileName) image to $(params.image):$(params.imageTag)"
+
+        git push origin $(params.gitRepositoryRevision)
+      volumeMounts:
+        - mountPath: /workspace/repository
+          name: repository
+      workingDir: /workspace/repository
+  volumes:
+    - emptyDir: {}
+      name: repository
