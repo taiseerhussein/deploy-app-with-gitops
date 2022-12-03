@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: achdbservice
+  name: php-hello
   namespace: openshift-gitops
 spec:
   generators:
@@ -15,7 +15,7 @@ spec:
       #   namespace: php-hello
   template:
     metadata:
-      name: '{{cluster}}-achdbservice'
+      name: '{{cluster}}-php-hello'
     spec:
       source:
         repoURL: https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git
