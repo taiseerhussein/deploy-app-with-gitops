@@ -21,7 +21,7 @@ patches:
 - patch: |- 
     - op: replace
       path: /spec/template/spec/source/path
-      value: namespace1/common/overlays/dev
+      value: kustomize/org-services/common/overlays/dev
   target:
       name: namespace1-common
 
