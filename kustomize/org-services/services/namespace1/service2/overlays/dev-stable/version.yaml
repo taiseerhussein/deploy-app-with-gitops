@@ -6,5 +6,5 @@ spec:
   template:
     spec:
       containers:
-      - image: quay.octfcu.org/namespace1/ingestionservice:2022.09.28
+      - image: quay.octfcu.orgnamespace1ingestionservice:2022.09.28
         name: ingestionservice

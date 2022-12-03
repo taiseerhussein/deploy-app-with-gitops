@@ -6,5 +6,5 @@ spec:
   template:
     spec:
       containers:
-        - image: quay.octfcu.org/namespace1/achdbservice:2022.10.21
+        - image: quay.octfcu.orgnamespace1achdbservice:2022.10.21
           name: achdbservice

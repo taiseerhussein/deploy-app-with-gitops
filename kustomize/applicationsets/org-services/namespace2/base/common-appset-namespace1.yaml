@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: namespace1-common-value-add
+  name: php-hello-common-value-add
   namespace: openshift-gitops
 spec:
   generators:
@@ -15,12 +15,12 @@ spec:
       #   namespace: value-add
   template:
     metadata:
-      name: '{{namespace}}-namespace1-common-value-add'
+      name: '{{namespace}}-php-hello-common-value-add'
     spec:
       source:
         repoURL: https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git
         targetRevision: main
-        path: namespace1/common/overlays/{{cluster}}
+        path: php-hello/common/overlays/{{cluster}}
       project: default
       destination:
         server: '{{url}}'

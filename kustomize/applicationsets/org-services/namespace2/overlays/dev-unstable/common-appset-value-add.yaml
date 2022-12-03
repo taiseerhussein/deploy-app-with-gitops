@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: namespace1-common-value-add
+  name: php-hello-common-value-add
   namespace: openshift-gitops
 spec:
   generators:

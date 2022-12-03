@@ -75,7 +75,7 @@ spec:
             - configMapRef:
                 name: bam
           image: >-
-            docker-registry.default.svc:5000/namespace1/bam@sha256:b2b0cab4f0ed78d393a049604fd366c14ce7d49742a938dbdca4c066a081a79b
+            docker-registry.default.svc:5000namespace1bam@sha256:b2b0cab4f0ed78d393a049604fd366c14ce7d49742a938dbdca4c066a081a79b
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst

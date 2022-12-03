@@ -20,7 +20,7 @@ spec:
       source:
         repoURL: https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git
         targetRevision: main
-        path: namespace1/services/value-add/service2/overlays/{{cluster}}
+        path: php-hello/services/value-add/service2/overlays/{{cluster}}
       project: default
       destination:
         server: '{{url}}'

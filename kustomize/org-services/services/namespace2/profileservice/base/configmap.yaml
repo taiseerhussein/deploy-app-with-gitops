@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 data:
   appconfig__statelistcache__refreshintervalhours: '1'
-  dependencyendpoint__restapi__namespace1ingestionservice__baseurl: 'http://ingestionservice.namespace1.svc.cluster.local:8080/'
+  dependencyendpoint__restapi__php-helloingestionservice__baseurl: 'http://ingestionservice.php-hello.svc.cluster.local:8080/'
   dependencyendpoint__restapi__valueaddlocationservice__baseurl: 'http://locationservice.value-add.svc.cluster.local:8080/'
 metadata:
   name: service2

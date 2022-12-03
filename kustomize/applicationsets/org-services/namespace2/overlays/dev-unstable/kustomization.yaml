@@ -26,9 +26,9 @@ patchesStrategicMerge:
 # - patch: |- 
 #     - op: replace
 #       path: /spec/template/spec/source/path
-#       value: namespace1/common/overlays/dev
+#       value: php-hello/common/overlays/dev
 #   target:
-#     name: namespace1-common-value-add
+#     name: php-hello-common-value-add
 
 
 

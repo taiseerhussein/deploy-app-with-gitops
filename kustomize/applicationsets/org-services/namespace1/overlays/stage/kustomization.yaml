@@ -12,6 +12,6 @@ patches:
         elements: 
         - cluster: stage
           url: https://kubernetes.default.svc
-          namespace: namespace1
+          namespace: php-hello
   target:
     kind: ApplicationSet

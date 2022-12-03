@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- apm-secret-namespace1-unstable.yaml
+- apm-secret-php-hello-unstable.yaml
 - apm-secret-value-add-unstable.yaml
 - activemq-secret-backbase-unstable.yaml
 - apm-secret-backbase-unstable.yaml
