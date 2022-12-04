@@ -8,11 +8,7 @@ metadata:
 spec:
   port:
     targetPort: 8080-tcp
-  tls:
-    insecureEdgeTerminationPolicy: Allow
-    termination: edge
   to:
     kind: Service
     name: REPLACE_ME
     weight: 100
-  wildcardPolicy: None

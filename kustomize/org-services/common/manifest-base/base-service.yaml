@@ -11,6 +11,4 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    deploymentconfig: REPLACE_ME
-  sessionAffinity: None
-  type: ClusterIP
+    app: REPLACE_ME
