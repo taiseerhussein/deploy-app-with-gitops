@@ -44,7 +44,7 @@ patches:
       path: /metadata/name
       value: php-hello
     - op: replace
-      path: /spec/selector/deploymentconfig
+      path: /spec/selector/app
       value: php-hello
   target:
     kind: Service
