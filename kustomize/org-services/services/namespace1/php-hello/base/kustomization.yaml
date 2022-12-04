@@ -17,9 +17,6 @@ patches:
       path: /spec/selector/matchLabels/app
       value: php-hello
     - op: replace
-      path: /spec/selector/matchLabels/deploymentconfig
-      value: php-hello
-    - op: replace
       path: /spec/template/metadata/labels/app
       value: php-hello
     - op: replace
