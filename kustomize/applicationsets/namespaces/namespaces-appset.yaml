@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: php-hello-common-secrets
+  name: namespaces-creation
   namespace: openshift-gitops
 spec:
   generators:
@@ -12,7 +12,7 @@ spec:
         namespace: php-hello
   template:
     metadata:
-      name: '{{cluster}}-common-sealed-secret'
+      name: '{{cluster}}-namespaces-creation'
     spec:
       source:
         repoURL: https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git
