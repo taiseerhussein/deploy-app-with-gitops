@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: php-hello-common-secrets
+  namespace: openshift-gitops
+spec:
+  generators:
+  - list:
+      elements:
+      - cluster: dev
+        url: https://kubernetes.default.svc
+        namespace: php-hello
+  template:
+    metadata:
+      name: '{{cluster}}-common-sealed-secret'
+    spec:
+      source:
+        repoURL: https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git
+        targetRevision: main
+        path: kustomize/org-services/common/namespaces
+      project: default
+      destination:
+        server: '{{url}}'
+        namespace: openshift-gitops
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

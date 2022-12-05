@@ -5,7 +5,8 @@ resources:
 - ../../org-services/namespace1/overlays/dev
 - ../../org-services/namespace2/overlays/dev
 
-
+# create namespaces appset. 
+- ../../namespaces
 # Create sealed secret appsets
 # - ../../sealed-secrets/dev
 
