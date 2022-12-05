@@ -15,7 +15,7 @@ spec:
       #   namespace: value-add
   template:
     metadata:
-      name: '{{namespace}}-php-hello'
+      name: '{{namespace}}-php-hello-2-common'
     spec:
       source:
         repoURL: https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git
