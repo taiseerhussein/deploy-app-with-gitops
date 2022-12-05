@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: php-hello-common-value-add
+  name: php-hello-common
   namespace: openshift-gitops
 spec:
   generators:
@@ -9,5 +9,5 @@ spec:
       elements:
       - cluster: dev-stable
         url: https://kubernetes.default.svc
-        namespace: value-add-stable
+        namespace: namespace2
  

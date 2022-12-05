@@ -3,4 +3,4 @@ data:
   ASPNETCORE_ENVIRONMENT: 'Development'
 kind: ConfigMap
 metadata:
-  name: service2
+  name: php-hello-2

@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
 - ../../org-services/namespace1/overlays/dev
-# - ../../org-services/namespace1/overlays/dev
+- ../../org-services/namespace2/overlays/dev
 
 
 # Create sealed secret appsets

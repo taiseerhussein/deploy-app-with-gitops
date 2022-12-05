@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: achdbservice
+spec:
+  template:
+    spec:
+      containers:
+        - image: quay.octfcu.orgnamespace1achdbservice:2022.10.21
+          name: achdbservice

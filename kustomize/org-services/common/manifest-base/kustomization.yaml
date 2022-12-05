@@ -6,3 +6,4 @@ resources:
 - base-route.yaml
 - base-service.yaml
 - namespace1.yaml
+- namespace2.yaml
