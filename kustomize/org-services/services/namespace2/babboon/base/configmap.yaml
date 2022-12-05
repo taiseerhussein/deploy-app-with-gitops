@@ -4,4 +4,4 @@ data:
   key2: value2
 kind: ConfigMap
 metadata:
-  name: php-hello-2
+  name: babboon

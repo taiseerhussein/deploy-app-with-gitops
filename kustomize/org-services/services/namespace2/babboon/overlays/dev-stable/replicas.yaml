@@ -1,6 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: php-hello-2
+  name: babboon
 spec:
   replicas: 2

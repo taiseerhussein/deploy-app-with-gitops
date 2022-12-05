@@ -3,4 +3,4 @@ data:
   ASPNETCORE_ENVIRONMENT: 'Development'
 kind: ConfigMap
 metadata:
-  name: php-hello-2
+  name: babboon

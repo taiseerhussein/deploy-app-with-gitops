@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: php-hello-2
+  name: babboon
 spec:
   template:
     spec:
       containers:
       - image: quay.io/tkhussein/php-hello:v3.0.3
-        name: php-hello-2
+        name: babboon
