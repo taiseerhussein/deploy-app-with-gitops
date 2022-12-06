@@ -15,6 +15,7 @@ apiVersion: extensions/v1beta1
 {{- end }}
 kind: Ingress
 metadata:
+  namespace: {{ .Values.namespace }}
   name: {{ $fullName }}
   labels:
     {{- include "app-template.labels" . | nindent 4 }}
