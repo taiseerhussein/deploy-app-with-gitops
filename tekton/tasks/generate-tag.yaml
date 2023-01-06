@@ -2,6 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
   name: generate-tag
+  namespace: tekton-tutorial
   annotations:
     description: |
       Generate a new unique image tag based on format YYYY-MM-YY-HH-MM-SS.
