@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: achdbservice
+  name: babboon
 spec:
   template:
     spec:
       containers:
-        - image: quay.octfcu.orgnamespace1achdbservice:2022.10.21
-          name: achdbservice
+        - image: quay.io/tkhussein/php-hello:v3.0.3
+          name: babboon

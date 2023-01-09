@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: ingestionservice
+  name: service2
   namespace: openshift-gitops
 spec:
   generators:
@@ -15,12 +15,12 @@ spec:
       #   namespace: php-hello
   template:
     metadata:
-      name: '{{cluster}}-ingestionservice'
+      name: '{{cluster}}-{{namespace}}-service2'
     spec:
       source:
         repoURL: https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git
         targetRevision: main
-        path: php-hello/servicesnamespace1ingestionservice/overlays/{{cluster}}
+        path: kustomize/org-services/services/service2/overlays/{{cluster}}
       project: default
       destination:
         server: '{{url}}'

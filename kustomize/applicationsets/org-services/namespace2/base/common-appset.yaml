@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: namespace2-common
+  name: php-hello-common
   namespace: openshift-gitops
 spec:
   generators:
@@ -9,18 +9,18 @@ spec:
       elements:
       # - cluster: dev
       #   url: https://kubernetes.default.svc
-      #   namespace: value-add-unstable
+      #   namespace: php-hello
       # - cluster: dev
       #   url: https://kubernetes.default.svc
-      #   namespace: value-add
+      #   namespace: php-hello-unstable
   template:
     metadata:
-      name: '{{namespace}}-babboon-common'
+      name: '{{namespace}}-common'
     spec:
       source:
         repoURL: https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git
         targetRevision: main
-        path: php-hello/common/overlays/{{cluster}}
+        path: kustomize/org-services/common/overlays/{{cluster}}
       project: default
       destination:
         server: '{{url}}'
@@ -29,3 +29,4 @@ spec:
         automated:
           prune: true
           selfHeal: true
+ 

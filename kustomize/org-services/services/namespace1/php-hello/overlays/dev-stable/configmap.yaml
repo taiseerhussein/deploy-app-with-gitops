@@ -1,6 +1,6 @@
 apiVersion: v1
 data:
-  ASPNETCORE_ENVIRONMENT: 'Development'
+  ENVIRONMENT: 'Development'
 kind: ConfigMap
 metadata:
   name: php-hello

@@ -15,7 +15,7 @@ spec:
       #   namespace: php-hello
   template:
     metadata:
-      name: '{{cluster}}-php-hello'
+      name: '{{cluster}}-{{namespace}}-php-hello'
     spec:
       source:
         repoURL: https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git

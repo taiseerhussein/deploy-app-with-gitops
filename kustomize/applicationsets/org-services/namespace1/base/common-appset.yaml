@@ -15,7 +15,7 @@ spec:
       #   namespace: php-hello-unstable
   template:
     metadata:
-      name: '{{namespace}}-php-hello-common'
+      name: '{{namespace}}-common'
     spec:
       source:
         repoURL: https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git
