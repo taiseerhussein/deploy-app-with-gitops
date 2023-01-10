@@ -17,11 +17,11 @@ spec:
       description: image to be build from the code
       name: IMAGEREPO
       type: string
-    - default: 'https://github.com/taiseerhussein/php-hello.git'
+    - default: 'https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git'
       description: The kustomize git repository url
       name: KUSTOMIZE_GIT_URL
       type: string
-    - default: prod
+    - default: dev-stable
       description: The target env
       name: KUSTOMIZE_ENV
       type: string
@@ -33,11 +33,11 @@ spec:
       description: The kustomize git repository revision
       name: KUSTOMIZE_GIT_REVISION
       type: string
-    - default: apps/php
+    - default: kustomize/org-services/services
       description: The subdirectory in the kustomize git repository
       name: KUSTOMIZE_GIT_CONTEXT_DIR
       type: string
-    - default: overlays/$(params.KUSTOMIZE_ENV)/php-hello-deployment.yaml
+    - default: namespace1/php-hello/overlays/$(params.KUSTOMIZE_ENV)/version.yaml
       description: The YAML file in which to patch the image
       name: KUSTOMIZE_GIT_FILE_NAME
       type: string
