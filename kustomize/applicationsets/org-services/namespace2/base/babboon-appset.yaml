@@ -12,7 +12,7 @@ spec:
         namespace: namespace2
   template:
     metadata:
-      name: '{{cluster}}-babboon'
+      name: '{{cluster}}-{{namespace}}-babboon'
     spec:
       source:
         repoURL: https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git
