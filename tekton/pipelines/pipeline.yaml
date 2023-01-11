@@ -3,6 +3,8 @@ kind: Pipeline
 metadata:
   name: tag-build-and-deploy
   namespace: tekton-tutorial
+  labels:
+    app.kubernetes.io/instance: pipeline
 spec:
   params:
     - default: 'https://github.com/taiseerhussein/php-hello-dockerfile.git'
@@ -17,7 +19,7 @@ spec:
       description: image to be build from the code
       name: IMAGEREPO
       type: string
-    - default: 'https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git'
+    - default: 'https://github.com/taiseerhussein/deploy-app-with-gitops.git'
       description: The kustomize git repository url
       name: KUSTOMIZE_GIT_URL
       type: string
@@ -56,27 +58,6 @@ spec:
       workspaces:
         - name: source
           workspace: shared-workspace
-    - name: update-kustomize-repo
-      params:
-        - name: gitRepositoryUrl
-          value: $(params.KUSTOMIZE_GIT_URL)
-        - name: gitRepositoryRevision
-          value: $(params.KUSTOMIZE_GIT_REVISION)
-        - name: gitPath
-          value: $(params.KUSTOMIZE_GIT_CONTEXT_DIR)
-        - name: fileName
-          value: $(params.KUSTOMIZE_GIT_FILE_NAME)
-        - name: image
-          value: quay.io/tkhussein/php-hello
-        - name: imageTag
-          value: $(tasks.git-clone.results.commit)
-        - name: verbose
-          value: 'true'
-      runAfter:
-        - build-image
-      taskRef:
-        kind: Task
-        name: update-kustomize-repo
     - name: git-clone
       params:
         - name: url
@@ -104,5 +85,26 @@ spec:
       workspaces:
         - name: output
           workspace: shared-workspace
+    - name: update-kustomize-repo
+      params:
+        - name: gitRepositoryUrl
+          value: 'https://github.com/taiseerhussein/deploy-app-with-gitops.git'
+        - name: gitRepositoryRevision
+          value: main
+        - name: gitPath
+          value: kustomize/org-services/services
+        - name: fileName
+          value: namespace1/php-hello/overlays/dev-stable/version.yaml
+        - name: image
+          value: quay.io/tkhussein/php-hello
+        - name: imageTag
+          value: $(tasks.git-clone.results.commit)
+        - name: verbose
+          value: 'true'
+      runAfter:
+        - build-image
+      taskRef:
+        kind: Task
+        name: update-kustomize-repo
   workspaces:
     - name: shared-workspace

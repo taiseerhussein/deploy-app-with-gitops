@@ -1,8 +1,6 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  annotations:
-    tekton.dev/displayName: Update Kustomize Git Repository
   name: update-kustomize-repo
   namespace: tekton-tutorial
 spec:
@@ -10,16 +8,14 @@ spec:
     - description: URL of the Git repository to update
       name: gitRepositoryUrl
       type: string
-    - default: master
+    - default: main
       description: Branch or Tag to push the update to
       name: gitRepositoryRevision
       type: string
-    - default: .
-      description: Path in the repository to work in.
+    - description: Path in the repository to work in.
       name: gitPath
       type: string
-    - default: ./deployment-patch.yaml
-      description: Name of the file to be updated
+    - description: Name of the file to be updated
       name: fileName
       type: string
     - description: The image to be written into the YAML
@@ -38,7 +34,6 @@ spec:
       resources: {}
       script: |
         #!/usr/bin/env sh
-        echo 1
 
         set -eu -o pipefail
 
@@ -51,9 +46,8 @@ spec:
 
         git clone $(params.gitRepositoryUrl) $(pwd)/repository
 
-        echo 3
-
         cd repository
+
         git checkout $(params.gitRepositoryRevision)
       volumeMounts:
         - mountPath: /workspace/repository
@@ -67,7 +61,6 @@ spec:
 
         set -e
 
-
         if [[ "\$(params.verbose)" == "true" ]] ; then
           echo "**** Updating \$(params.fileName) image to \$(params.image):\$(params.imageTag)"
         fi
@@ -76,11 +69,11 @@ spec:
 
         sed -i
         's+$(params.image)\:[[:graph:]]*+$(params.image):$(params.imageTag)+g'
-        $(params.gitPath)/\$(params.fileName)
+        repository/\$(params.gitPath)/\$(params.fileName)
       volumeMounts:
         - mountPath: /workspace/repository
           name: repository
-      workingDir: /workspace/repository
+      workingDir: /workspace
     - image: 'alpine/git:v2.26.2'
       name: commit-push-changes
       resources: {}
@@ -88,7 +81,6 @@ spec:
         #!/usr/bin/env sh
 
         set -e
-
 
         git config --global user.email "tekton@tekton.dev"
 
