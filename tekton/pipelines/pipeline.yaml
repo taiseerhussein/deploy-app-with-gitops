@@ -89,8 +89,6 @@ spec:
           value: '1'
         - name: sslVerify
           value: 'true'
-        - name: crtFileName
-          value: ca-bundle.crt
         - name: deleteExisting
           value: 'true'
         - name: verbose
@@ -101,7 +99,7 @@ spec:
         - name: userHome
           value: /tekton/home
       taskRef:
-        kind: Task
+        kind: ClusterTask
         name: git-clone
       workspaces:
         - name: output
