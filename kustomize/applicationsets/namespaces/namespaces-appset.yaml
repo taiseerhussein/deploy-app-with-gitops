@@ -15,7 +15,7 @@ spec:
       name: '{{cluster}}-namespaces-creation'
     spec:
       source:
-        repoURL: https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git
+        repoURL: https://github.com/taiseerhussein/deploy-app-with-gitops.git
         targetRevision: main
         path: kustomize/org-services/common/namespaces
       project: default

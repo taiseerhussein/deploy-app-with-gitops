@@ -18,7 +18,7 @@ spec:
       name: '{{cluster}}-{{namespace}}-php-hello'
     spec:
       source:
-        repoURL: https://gitlab.consulting.redhat.com/poc1/gitops-appdev.git
+        repoURL: https://github.com/taiseerhussein/deploy-app-with-gitops.git
         targetRevision: main
         path: kustomize/org-services/services/namespace1/php-hello/overlays/{{cluster}}
       project: default
