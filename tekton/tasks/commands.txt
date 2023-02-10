@@ -1,0 +1,9 @@
+-- Create basic auth secret to be used in the pipeline to commit changes to the repo
+oc create secret generic github-token \
+   --from-literal=username=<github username>\
+   --from-literal=password=<access token > \
+   --type "kubernetes.io/basic-auth" \
+
+oc annotate secret github-sec "tekton.dev/git-0=https://github.com/taiseerhussein"
+
+oc secrets link pipeline github-sec

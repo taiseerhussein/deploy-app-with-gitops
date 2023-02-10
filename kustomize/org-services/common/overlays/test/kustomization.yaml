@@ -4,4 +4,4 @@ resources:
 - ../../base
 - endpoints-common.yaml
 patchesStrategicMerge:
-- apm-common.yaml
+- test-configMap.yaml
