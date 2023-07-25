@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
 - namespace1.yaml
 - namespace2.yaml
-# - namespace3.yaml
+- namespace3.yaml
