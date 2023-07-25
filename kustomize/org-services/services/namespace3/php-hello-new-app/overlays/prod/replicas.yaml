@@ -1,6 +1,0 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: php-hello-new-app
-spec:
-  replicas: 1
